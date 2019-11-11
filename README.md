@@ -53,4 +53,4 @@ $ python3 test_orb.py --type identity
 |Identity Homography|32.13|
 
 ### Graph
-![image](https://gitee.com/foamliu/HomographyNet/raw/master/images/result.jpg)
+![image](images/result.jpg)
