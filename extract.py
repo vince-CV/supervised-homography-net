@@ -9,4 +9,4 @@ def extract(filename):
 
 
 if __name__ == "__main__":
-    extract('data/train2017.zip')
+    extract('data/train2014.zip')

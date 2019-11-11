@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+import cv2 as cv
 from torch import nn
 from torch.utils.tensorboard import SummaryWriter
 
@@ -19,7 +20,7 @@ def train_net(args):
     writer = SummaryWriter()
     epochs_since_improvement = 0
 
-    # Initialize / load checkpoint
+    #Initialize / load checkpoint
     if checkpoint is None:
         model = MobileNetV2()
         model = nn.DataParallel(model)
@@ -37,17 +38,20 @@ def train_net(args):
 
     # Move to GPU, if available
     model = model.to(device)
-
+    print("Pytorch version: ", torch.__version__)
+    print("GPU usage: ", device)
+    
     # Loss function
     criterion = nn.MSELoss().to(device)
 
     # Custom dataloaders
-    train_dataset = DeepHNDataset('train')
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True,
-                                               num_workers=num_workers)
+    print("Custom dataloader...")
+    train_dataset = DeepHNDataset('train') 
+    #image, target = train_dataset.__getitem__(5)
+    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=num_workers)
     valid_dataset = DeepHNDataset('valid')
-    valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=args.batch_size, shuffle=False,
-                                               num_workers=num_workers)
+    valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=args.batch_size, shuffle=False,num_workers=num_workers)
+    print("Done dataloader...")
 
     # Epochs
     for epoch in range(start_epoch, args.end_epoch):

@@ -106,10 +106,10 @@ def accuracy(pred, target):
 def parse_args():
     parser = argparse.ArgumentParser(description='Train face network')
     # general
-    parser.add_argument('--end-epoch', type=int, default=1000, help='training epoch size.')
-    parser.add_argument('--lr', type=float, default=0.005, help='start learning rate')
-    parser.add_argument('--momentum', type=float, default=0.9, help='momentum')
-    parser.add_argument('--batch-size', type=int, default=64, help='batch size in each context')
+    parser.add_argument('--end-epoch',  type=int, default=1000, help='training epoch size.')
+    parser.add_argument('--lr',         type=float, default=0.005, help='start learning rate')
+    parser.add_argument('--momentum',   type=float, default=0.9, help='momentum')
+    parser.add_argument('--batch-size', type=int, default=4, help='batch size in each context')
     parser.add_argument('--checkpoint', type=str, default=None, help='checkpoint')
     args = parser.parse_args()
     return args

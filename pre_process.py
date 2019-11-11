@@ -87,9 +87,9 @@ if __name__ == "__main__":
     num_files = len(files)
     print('num_files: ' + str(num_files))
 
-    num_train_files = 100000
-    num_valid_files = 8287
-    num_test_files = 10000
+    num_train_files = 8000
+    num_valid_files = 3000
+    num_test_files = 5000
 
     train_files = files[:num_train_files]
     valid_files = files[num_train_files:num_train_files + num_valid_files]
@@ -101,7 +101,7 @@ if __name__ == "__main__":
 
     print('num_train: ' + str(len(train)))
     print('num_valid: ' + str(len(valid)))
-    print('num_test: ' + str(len(test)))
+    print('num_test:  ' + str(len(test)))
 
     with open(train_file, 'wb') as f:
         pickle.dump(train, f)

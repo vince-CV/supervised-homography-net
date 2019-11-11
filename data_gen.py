@@ -13,6 +13,7 @@ class DeepHNDataset(Dataset):
         print('loading {}...'.format(filename))
         with open(filename, 'rb') as file:
             samples = pickle.load(file)
+        print('loading {} done'.format(filename))
         np.random.shuffle(samples)
         self.split = split
         self.samples = samples

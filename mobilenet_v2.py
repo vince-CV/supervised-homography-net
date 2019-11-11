@@ -61,11 +61,11 @@ class InvertedResidual(nn.Module):
         ])
         self.conv = nn.Sequential(*layers)
         # Replace torch.add with floatfunctional
-        self.skip_add = nn.quantized.FloatFunctional()
+        self.skip_add = nn.quantized.FloatFunctional
 
     def forward(self, x):
         if self.use_res_connect:
-            return self.skip_add.add(x, self.conv(x))
+            return torch.add(x, self.conv(x)) # self.skip_add.add(x, self.conv(x))
         else:
             return self.conv(x)
 
