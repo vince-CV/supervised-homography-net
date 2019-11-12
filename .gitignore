@@ -1,7 +1,9 @@
 .idea
-__pycache__/
-images/
-test/
 .git/
+__pycache__/
+
+
 data/
-runs/*DESKTOP-TMML47M/
+runs/
+test/
+
