@@ -18,10 +18,10 @@ if __name__ == '__main__':
     print('loading {}...'.format(filename))
     model = MobileNetV2()
     model.load_state_dict(torch.load(filename))
+    #model.eval()
 
     test_dataset = DeepHNDataset('test')
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=True,
-                                              num_workers=num_workers)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
 
     num_samples = len(test_dataset)
 
