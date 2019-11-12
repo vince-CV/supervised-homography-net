@@ -51,3 +51,5 @@ $ python test_orb.py --type identity
 |HomographyNet|3.53|
 |SURF + RANSAC|8.83|
 |Identity Homography|32.13|
+
+![image](images/result.jpg)
