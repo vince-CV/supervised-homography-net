@@ -43,19 +43,14 @@ def get_datum(img, test_image, size, rho, top_point, patch_size):
     return datum
 
 
-### This function is provided by Mez Gebre's repository "deep_homography_estimation"
-#   https://github.com/mez/deep_homography_estimation
-#   Dataset_Generation_Visualization.ipynb
 def process(files, is_test):
     if is_test:
         size = (640, 480)
-        # Data gen parameters
         rho = 64
         patch_size = 256
 
     else:
         size = (320, 240)
-        # Data gen parameters
         rho = 32
         patch_size = 128
 
@@ -104,7 +99,7 @@ if __name__ == "__main__":
     print('num_test:  ' + str(len(test)))
 
     with open(train_file, 'wb') as f:
-        pickle.dump(train, f)
+        pickle.dump(train, f)  # serialize object into file
     with open(valid_file, 'wb') as f:
         pickle.dump(valid, f)
     with open(test_file, 'wb') as f:

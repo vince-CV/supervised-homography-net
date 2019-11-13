@@ -18,7 +18,7 @@ if __name__ == '__main__':
     print('loading {}...'.format(filename))
     model = MobileNetV2()
     model.load_state_dict(torch.load(filename))
-    model.eval()
+    model.eval() # Notify all layers are in eval mode, that way, batchnorm or dropout layers will work in eval mode instead of training mode.
 
     test_dataset = DeepHNDataset('test')
     test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         target = target.float().to(device)  # [N, 8]
 
         # Forward prop.
-        with torch.no_grad():
+        with torch.no_grad(): # Autograd engine and deactivate it. It will reduce memory usage and speed up
             start = time.time()
             out = model(img)  # [N, 8]
             end = time.time()

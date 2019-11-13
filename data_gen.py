@@ -12,7 +12,7 @@ class DeepHNDataset(Dataset):
         filename = 'data/{}.pkl'.format(split)
         print('loading {}...'.format(filename))
         with open(filename, 'rb') as file:
-            samples = pickle.load(file)
+            samples = pickle.load(file)  # anti-serialize file into a python object
         print('loading {} done'.format(filename))
         np.random.shuffle(samples)
         self.split = split
@@ -20,7 +20,7 @@ class DeepHNDataset(Dataset):
 
     def __getitem__(self, i):
         sample = self.samples[i]
-        image, four_points, perturbed_four_points = sample
+        image, four_points, perturbed_four_points = sample # object: image (H*W*3)
         img0 = image[:, :, 0]
         img0 = cv.resize(img0, (im_size, im_size))
         img1 = image[:, :, 1]
@@ -28,10 +28,10 @@ class DeepHNDataset(Dataset):
         img = np.zeros((im_size, im_size, 3), np.float32)
         img[:, :, 0] = img0 / 255.
         img[:, :, 1] = img1 / 255.
-        img = np.transpose(img, (2, 0, 1))  # HxWxC array to CxHxW
+        img = np.transpose(img, (2, 0, 1))  # HxWxC into CxHxW
         H_four_points = np.subtract(np.array(perturbed_four_points), np.array(four_points))
         target = np.reshape(H_four_points, (8,))
-        return img, target
+        return img, target # target is difference between anchor of box
 
     def __len__(self):
         return len(self.samples)
