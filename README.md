@@ -54,4 +54,4 @@ $ python test_orb.py --type identity
 
 ![image](images/result.jpg)
 
-![image](images/COCO results.png)
+![image](images/COCO_results.png)
