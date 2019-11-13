@@ -53,4 +53,4 @@ $ python test_orb.py --type identity
 |Identity Homography|32.13|
 
 ![image](images/result.jpg)
-![image](images/COCO results.jpg)
+![image](images/COCO results.png)
