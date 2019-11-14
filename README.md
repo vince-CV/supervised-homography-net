@@ -10,14 +10,14 @@ Deep Image Homography Estimation [paper](https://arxiv.org/abs/1606.03798) imple
 
 ## DataSet
 
-- Train/valid: generated 500,000/41,435 pairs of image patches sized 128x128(rho=32).
-- Test: generated 10,000 pairs of image patches sized 256x256(rho=64).
+- Train/valid: generated 8,000/3,000 pairs of image patches sized 128x128(rho=32).
+- Test: generated 5,000 pairs of image patches sized 256x256(rho=64).
 
 
 ## Dependencies
 
-- Python 3.6.8
-- PyTorch 1.3.0
+- Python 3.7.3
+- PyTorch 1.3.1
 
 
 ## Usage
@@ -38,12 +38,11 @@ If want to visualize during training, run in your terminal:
 $ tensorboard --logdir runs
 ```
 
-## Test
-Homography Estimation Comparison on Warped MS-COCO 14 Test Set.
+### Test
+Unzip model file into .pt file. Homography Estimation Comparison on Warped MS-COCO 14 Test Set.
 ```bash
+$ python export.py
 $ python test.py
-$ python test_orb.py --type surf
-$ python test_orb.py --type identity
 ```
 ### Result
 |Method|Mean Average Corner Error (pixels)|
