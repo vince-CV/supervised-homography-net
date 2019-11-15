@@ -5,7 +5,7 @@ import torch
 from mobilenet_v2 import MobileNetV2
 
 if __name__ == '__main__':
-    checkpoint = 'BEST_checkpoint.tar'
+    checkpoint = 'model/BEST_checkpoint.tar'
     print('loading {}...'.format(checkpoint))
     start = time.time()
     checkpoint = torch.load(checkpoint)
