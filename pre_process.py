@@ -82,9 +82,9 @@ if __name__ == "__main__":
     num_files = len(files)
     print('num_files: ' + str(num_files))
 
-    num_train_files = 8000
-    num_valid_files = 3000
-    num_test_files = 5000
+    num_train_files = 25000
+    num_valid_files = 4000
+    num_test_files = 1000
 
     train_files = files[:num_train_files]
     valid_files = files[num_train_files:num_train_files + num_valid_files]

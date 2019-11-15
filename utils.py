@@ -28,7 +28,7 @@ def save_checkpoint(epoch, epochs_since_improvement, model, optimizer, loss, is_
     torch.save(state, filename)
     # If this checkpoint is the best so far, store a copy so it doesn't get overwritten by a worse checkpoint
     if is_best:
-        torch.save(state, 'model/BEST_checkpoint.tar')
+        torch.save(state, 'C:/Users/xwen2/Desktop/HomographyNet_supervised/model/BEST_checkpoint.tar')
 
 
 class AverageMeter(object):
@@ -106,11 +106,11 @@ def accuracy(pred, target):
 def parse_args():
     parser = argparse.ArgumentParser(description='Train face network')
     # general
-    parser.add_argument('--end-epoch',  type=int, default=1000, help='training epoch size.')
+    parser.add_argument('--end-epoch',  type=int,   default=1000,  help='training epoch size.')
     parser.add_argument('--lr',         type=float, default=0.005, help='start learning rate')
-    parser.add_argument('--momentum',   type=float, default=0.9, help='momentum')
-    parser.add_argument('--batch-size', type=int, default=4, help='batch size in each context')
-    parser.add_argument('--checkpoint', type=str, default=None, help='checkpoint')
+    parser.add_argument('--momentum',   type=float, default=0.9,   help='momentum')
+    parser.add_argument('--batch-size', type=int,   default=4,     help='batch size in each context')
+    parser.add_argument('--checkpoint', type=str,   default=None,  help='checkpoint')
     args = parser.parse_args()
     return args
 

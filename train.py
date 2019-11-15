@@ -25,7 +25,6 @@ def train_net(args):
     if checkpoint is None:
         model = MobileNetV2()
         model = nn.DataParallel(model)
-
         optimizer = HNetOptimizer(torch.optim.Adam(model.parameters(), lr=args.lr))
 
     else:
@@ -120,7 +119,6 @@ def train(train_loader, model, criterion, optimizer, epoch, logger):
                          'Loss {loss.val:.5f} ({loss.avg:.5f})'.format(epoch, i,
                                                                        len(train_loader),
                                                                        loss=losses,
-
                                                                        )
                 logger.info(status)
 

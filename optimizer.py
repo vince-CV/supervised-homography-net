@@ -1,5 +1,4 @@
 class HNetOptimizer(object):
-    """A simple wrapper class for learning rate scheduling"""
 
     def __init__(self, optimizer):
         self.optimizer = optimizer
