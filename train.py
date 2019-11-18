@@ -59,14 +59,14 @@ def train_net(args):
         # One epoch's training
         train_loss = train(train_loader=train_loader, model=model, criterion=criterion, optimizer=optimizer, epoch=epoch, logger=logger)
 
-        writer.add_scalar('C:/Users/xwen2/Desktop/HomographyNet/model/train_loss', train_loss, epoch)
-        writer.add_scalar('C:/Users/xwen2/Desktop/HomographyNet/model/learning_rate', optimizer.lr, epoch)
+        writer.add_scalar('C:/Users/xwen2/Desktop/HomographyNet_supervised/runs/train_loss', train_loss, epoch)
+        writer.add_scalar('C:/Users/xwen2/Desktop/HomographyNet_supervised/runs/learning_rate', optimizer.lr, epoch)
         print('\nCurrent effective learning rate: {}\n'.format(optimizer.lr))
 
         # One epoch's validation
         valid_loss = valid(valid_loader=valid_loader, model=model, criterion=criterion, logger=logger)
 
-        writer.add_scalar('C:/Users/xwen2/Desktop/HomographyNet/model/valid_loss', valid_loss, epoch)
+        writer.add_scalar('C:/Users/xwen2/Desktop/HomographyNet_supervised/runs/valid_loss', valid_loss, epoch)
 
         # Check if there was an improvement
         is_best = valid_loss < best_loss
