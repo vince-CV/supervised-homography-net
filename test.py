@@ -13,7 +13,7 @@ from utils import AverageMeter
 device = torch.device('cpu')
 
 if __name__ == '__main__':
-    filename = 'model/191115_homonet.pt'
+    filename = 'model/homonet.pt'
 
     print('loading {}...'.format(filename))
     model = MobileNetV2()
