@@ -3,7 +3,7 @@ import torch
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # sets device for model and PyTorch tensors
 
 im_size = 128
-batch_size = 4
+batch_size = 16
 
 num_samples = 30000
 num_train = 26000

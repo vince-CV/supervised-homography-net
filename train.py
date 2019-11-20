@@ -32,7 +32,7 @@ def train_net(args):
         start_epoch = checkpoint['epoch'] + 1
         epochs_since_improvement = checkpoint['epochs_since_improvement']
         model = checkpoint['model']
-        optimizer = checkpoint['optimizer']
+        optimizer = HNetOptimizer(torch.optim.Adam(model.parameters(), lr=args.lr)) #checkpoint['optimizer']
 
     logger = get_logger()
 
