@@ -20,6 +20,8 @@ def get_datum(img, test_image, img_perturbed, size, rho, top_point, patch_size):
     perturbed_four_points = []
     flag = 0
     for point in four_points:
+        perturbed_four_points.append((point[0] + random.randint(-rho, +rho), point[1] + random.randint(-rho, +rho)))
+        '''
         if (flag == 0):
             perturbed_four_points.append((point[0] + random.randint(-rho, 0), point[1] + random.randint(-rho, 0)))
         elif(flag == 1):
@@ -29,6 +31,7 @@ def get_datum(img, test_image, img_perturbed, size, rho, top_point, patch_size):
         elif(flag == 3):
             perturbed_four_points.append((point[0] + random.randint(0, +rho), point[1] + random.randint(-rho, 0)))
         flag = flag + 1
+        '''
 
     H = cv.getPerspectiveTransform(np.float32(four_points), np.float32(perturbed_four_points))
     H_inverse = inv(H)
@@ -87,7 +90,7 @@ def Gamma(image):
 
 def Motion_blur(image):
     image = np.array(image)
-    degree_ = 25
+    degree_ = 18
     angle_ = 45
     degree = int(np.random.uniform(1, degree_))
     angle = int(np.random.uniform(-angle_, angle_))
@@ -102,7 +105,7 @@ def Motion_blur(image):
 
 def Gaussian_blur(image):
 
-    kernel = [random.randint(1, 5) * 2 + 1 for x in range(1)]
+    kernel = [random.randint(1, 3) * 2 + 1 for x in range(1)]
     dst = cv.GaussianBlur(image, ksize=(kernel[0], kernel[0]), sigmaX=0, sigmaY=0)
     return dst
 
@@ -128,10 +131,11 @@ def process(files, is_test):
 
     else:
         size = (320, 240)
-        rho = 50
+        rho = 40
         patch_size = 128
 
     samples = []
+    
     for f in tqdm(files):
         fullpath = os.path.join(image_folder, f)
         img = cv.imread(fullpath, 0)
