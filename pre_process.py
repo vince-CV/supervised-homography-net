@@ -17,11 +17,12 @@ def get_datum(img, test_image, img_perturbed, size, rho, top_point, patch_size):
     right_point = (patch_size + top_point[0], top_point[1])
     four_points = [top_point, left_point, bottom_point, right_point]
 
+   # print(four_points)
+
     perturbed_four_points = []
     flag = 0
     for point in four_points:
-        perturbed_four_points.append((point[0] + random.randint(-rho, +rho), point[1] + random.randint(-rho, +rho)))
-        '''
+        #perturbed_four_points.append((point[0] + random.randint(-rho, +rho), point[1] + random.randint(-rho, +rho)))
         if (flag == 0):
             perturbed_four_points.append((point[0] + random.randint(-rho, 0), point[1] + random.randint(-rho, 0)))
         elif(flag == 1):
@@ -31,7 +32,7 @@ def get_datum(img, test_image, img_perturbed, size, rho, top_point, patch_size):
         elif(flag == 3):
             perturbed_four_points.append((point[0] + random.randint(0, +rho), point[1] + random.randint(-rho, 0)))
         flag = flag + 1
-        '''
+        
 
     H = cv.getPerspectiveTransform(np.float32(four_points), np.float32(perturbed_four_points))
     H_inverse = inv(H)
@@ -46,7 +47,7 @@ def get_datum(img, test_image, img_perturbed, size, rho, top_point, patch_size):
     return datum
 
 def contrast(image):
-    alpha = random.uniform(0.8, 1.2)
+    alpha = random.uniform(0.75, 1.25)
 
     if alpha< 1:
         beta = random.randint(-20, 0)
@@ -90,7 +91,7 @@ def Gamma(image):
 
 def Motion_blur(image):
     image = np.array(image)
-    degree_ = 18
+    degree_ = 20
     angle_ = 45
     degree = int(np.random.uniform(1, degree_))
     angle = int(np.random.uniform(-angle_, angle_))
@@ -105,7 +106,7 @@ def Motion_blur(image):
 
 def Gaussian_blur(image):
 
-    kernel = [random.randint(1, 3) * 2 + 1 for x in range(1)]
+    kernel = [random.randint(1, 4) * 2 + 1 for x in range(1)]
     dst = cv.GaussianBlur(image, ksize=(kernel[0], kernel[0]), sigmaX=0, sigmaY=0)
     return dst
 
@@ -131,7 +132,7 @@ def process(files, is_test):
 
     else:
         size = (320, 240)
-        rho = 40
+        rho = 128
         patch_size = 128
 
     samples = []
@@ -148,8 +149,8 @@ def process(files, is_test):
         img_perturbed = cv.resize(img_perturbed, size)
 
         if not is_test:
-            for top_point in [(0 + 32, 0 + 32), (128 + 32, 0 + 32), (0 + 32, 48 + 32), (128 + 32, 48 + 32),
-                              (64 + 32, 24 + 32)]:
+            #for top_point in [(0 + 32, 0 + 32), (128 + 32, 0 + 32), (0 + 32, 48 + 32), (128 + 32, 48 + 32), (64 + 32, 24 + 32)]:
+            for top_point in [(96, 56), (32, 80), (96, 103), (160, 80)]:
                 datum = get_datum(img, test_image, img_perturbed, size, rho, top_point, patch_size)
                 samples.append(datum)
         else:
