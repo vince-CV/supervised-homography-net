@@ -140,7 +140,7 @@ def perturbed_image(image):
 
 if __name__ == '__main__':
     
-    filename = 'model/homonet.pt'
+    filename = 'C:/Users/xwen2/Desktop/HomographyNet_supervised/model/191116_homonet.pt'
     model = MobileNetV2()
     elapsed = 0
     start = time.time()
@@ -153,10 +153,10 @@ if __name__ == '__main__':
     imsize = 128 if torch.cuda.is_available() else 128  # use small size if no gpu
 
     
-    img0, img1 = data_maker("C:/Users/xwen2/Desktop/HomographyNet_supervised/inference/5.jpg")
+    #img0, img1 = data_maker("C:/Users/xwen2/Desktop/HomographyNet_supervised/inference/5.jpg")
     
-    #img0 = cv.imread("C:/Users/xwen2/Desktop/HomographyNet_supervised/inference/src.jpg", 0)
-    #img1 = cv.imread("C:/Users/xwen2/Desktop/HomographyNet_supervised/inference/dst1.jpg", 0)
+    img0 = cv.imread("C:/Users/xwen2/Desktop/HomographyNet_supervised/inference/src.jpg", 0)
+    img1 = cv.imread("C:/Users/xwen2/Desktop/HomographyNet_supervised/inference/nn.jpg", 0)
 
     cv.imshow("a", img0)
     cv.imshow("b", img1)
